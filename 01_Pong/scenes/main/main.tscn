@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://hk7v1xc68kru"]
+
+[ext_resource type="PackedScene" uid="uid://fsttqtyniqq2" path="res://scenes/wall/wall.tscn" id="1_rsnxu"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3udpb"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.578908, 0.671403, 0.661973, 1)
+position = Vector2(577.25, 317.75)
+scale = Vector2(1155.5, 636.5)
+texture = SubResource("CanvasTexture_3udpb")
+
+[node name="TopWall" parent="." instance=ExtResource("1_rsnxu")]
+position = Vector2(5, 0)
+
+[node name="DownWall" parent="." instance=ExtResource("1_rsnxu")]
+position = Vector2(6, 643)
