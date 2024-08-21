@@ -1,9 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://fsttqtyniqq2"]
+[gd_scene load_steps=4 format=3 uid="uid://fsttqtyniqq2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8axu1"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vybhi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctgr5"]
 size = Vector2(1161, 30)
 
-[node name="Wall" type="Area2D"]
+[node name="Wall" type="RigidBody2D"]
+modulate = Color(0.212305, 0.212305, 0.212305, 1)
+physics_material_override = SubResource("PhysicsMaterial_8axu1")
+gravity_scale = 0.0
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.568627, 0.988235, 0.329412, 1)
+position = Vector2(570.776, -2.5)
+scale = Vector2(1160.45, 33)
+texture = SubResource("CanvasTexture_vybhi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(570.5, -2)

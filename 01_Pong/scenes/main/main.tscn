@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://hk7v1xc68kru"]
+[gd_scene load_steps=6 format=3 uid="uid://hk7v1xc68kru"]
 
 [ext_resource type="PackedScene" uid="uid://fsttqtyniqq2" path="res://scenes/wall/wall.tscn" id="1_rsnxu"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_shg82"]
+[ext_resource type="PackedScene" uid="uid://daah0rv83jxcn" path="res://scenes/ball/ball.tscn" id="2_mcy5x"]
+[ext_resource type="PackedScene" uid="uid://drsdx3i2hy8ij" path="res://scenes/racket/racket.tscn" id="3_yhj53"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_3udpb"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_shg82")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.578908, 0.671403, 0.661973, 1)
@@ -13,7 +17,19 @@ scale = Vector2(1155.5, 636.5)
 texture = SubResource("CanvasTexture_3udpb")
 
 [node name="TopWall" parent="." instance=ExtResource("1_rsnxu")]
-position = Vector2(5, 0)
+z_index = 1
+position = Vector2(8, 18)
 
 [node name="DownWall" parent="." instance=ExtResource("1_rsnxu")]
+z_index = 1
 position = Vector2(6, 643)
+
+[node name="Ball" parent="." instance=ExtResource("2_mcy5x")]
+z_index = 1
+position = Vector2(582, 299)
+
+[node name="Racket" parent="." instance=ExtResource("3_yhj53")]
+position = Vector2(8, 250)
+
+[node name="Racket2" parent="." instance=ExtResource("3_yhj53")]
+position = Vector2(1109, 250)
