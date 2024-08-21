@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://hk7v1xc68kru"]
+[gd_scene load_steps=7 format=3 uid="uid://hk7v1xc68kru"]
 
 [ext_resource type="PackedScene" uid="uid://fsttqtyniqq2" path="res://scenes/wall/wall.tscn" id="1_rsnxu"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_shg82"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://drsdx3i2hy8ij" path="res://scenes/racket/racket.tscn" id="3_yhj53"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_3udpb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kyx8"]
+size = Vector2(96.5, 662)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_shg82")
@@ -24,12 +27,28 @@ position = Vector2(8, 18)
 z_index = 1
 position = Vector2(6, 643)
 
-[node name="Ball" parent="." instance=ExtResource("2_mcy5x")]
+[node name="Ball" parent="." groups=["Ball"] instance=ExtResource("2_mcy5x")]
 z_index = 1
-position = Vector2(582, 299)
+position = Vector2(582, 300)
 
 [node name="Racket" parent="." instance=ExtResource("3_yhj53")]
 position = Vector2(8, 250)
 
 [node name="Racket2" parent="." instance=ExtResource("3_yhj53")]
 position = Vector2(1109, 250)
+
+[node name="OverAreaL" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OverAreaL"]
+position = Vector2(-51, 315)
+shape = SubResource("RectangleShape2D_2kyx8")
+
+[node name="OverAreaR" type="Area2D" parent="."]
+position = Vector2(1262, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OverAreaR"]
+position = Vector2(-55, 324)
+shape = SubResource("RectangleShape2D_2kyx8")
+
+[connection signal="body_entered" from="OverAreaL" to="." method="_on_over_area_l_body_entered"]
+[connection signal="body_entered" from="OverAreaR" to="." method="_on_over_area_r_body_entered"]

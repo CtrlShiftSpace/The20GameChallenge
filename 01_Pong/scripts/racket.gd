@@ -1,10 +1,14 @@
-extends RigidBody2D
+extends CharacterBody2D
 
-var _move_distance: float = 200.0
+var _velocity: Vector2 = Vector2(0, 100)
+var _speed: float = 200.0
 
 func _physics_process(delta):
+	velocity = Vector2.ZERO
 	if Input.is_action_pressed("ui_up"):
-		position.y += _move_distance * -1 * delta
+		velocity += _velocity * _speed * delta * -1
 	if Input.is_action_pressed("ui_down"):
-		position.y += _move_distance * delta
+		velocity += _velocity * _speed * delta
+	move_and_slide()
+
 	

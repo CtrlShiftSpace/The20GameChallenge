@@ -1,21 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://drsdx3i2hy8ij"]
+[gd_scene load_steps=4 format=3 uid="uid://drsdx3i2hy8ij"]
 
 [ext_resource type="Script" path="res://scripts/racket.gd" id="1_727wq"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6d5ob"]
-friction = 0.0
-bounce = 1.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_26dyw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fo6uw"]
 size = Vector2(34.5, 132.55)
 
-[node name="Racket" type="RigidBody2D"]
-physics_material_override = SubResource("PhysicsMaterial_6d5ob")
-freeze = true
-linear_damp_mode = 1
-angular_damp_mode = 1
+[node name="Racket" type="CharacterBody2D"]
 script = ExtResource("1_727wq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
