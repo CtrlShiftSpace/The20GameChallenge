@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://hk7v1xc68kru"]
+[gd_scene load_steps=9 format=3 uid="uid://hk7v1xc68kru"]
 
 [ext_resource type="PackedScene" uid="uid://fsttqtyniqq2" path="res://scenes/wall/wall.tscn" id="1_rsnxu"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_shg82"]
 [ext_resource type="PackedScene" uid="uid://daah0rv83jxcn" path="res://scenes/ball/ball.tscn" id="2_mcy5x"]
 [ext_resource type="PackedScene" uid="uid://drsdx3i2hy8ij" path="res://scenes/racket/racket.tscn" id="3_yhj53"]
+[ext_resource type="LabelSettings" uid="uid://dtbhhrqmmir6i" path="res://assets/tres/NotoS_54_white.tres" id="5_um0n5"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_3udpb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kyx8"]
 size = Vector2(96.5, 662)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_fyfrb"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_shg82")
@@ -29,7 +32,7 @@ position = Vector2(6, 643)
 
 [node name="Ball" parent="." groups=["Ball"] instance=ExtResource("2_mcy5x")]
 z_index = 1
-position = Vector2(582, 300)
+position = Vector2(579, 328)
 
 [node name="Racket" parent="." instance=ExtResource("3_yhj53")]
 position = Vector2(8, 250)
@@ -49,6 +52,75 @@ position = Vector2(1262, 2)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OverAreaR"]
 position = Vector2(-55, 324)
 shape = SubResource("RectangleShape2D_2kyx8")
+
+[node name="Divider" type="Node2D" parent="."]
+position = Vector2(0, 15)
+
+[node name="Line1" type="Sprite2D" parent="Divider"]
+modulate = Color(0.217469, 0.214331, 0.222412, 1)
+position = Vector2(578, 70)
+scale = Vector2(10.494, 50)
+texture = SubResource("CanvasTexture_fyfrb")
+
+[node name="Line2" type="Sprite2D" parent="Divider"]
+modulate = Color(0.217469, 0.214331, 0.222412, 1)
+position = Vector2(578, 140)
+scale = Vector2(10.494, 50)
+texture = SubResource("CanvasTexture_fyfrb")
+
+[node name="Line3" type="Sprite2D" parent="Divider"]
+modulate = Color(0.217469, 0.214331, 0.222412, 1)
+position = Vector2(578, 210)
+scale = Vector2(10.494, 50)
+texture = SubResource("CanvasTexture_fyfrb")
+
+[node name="Line4" type="Sprite2D" parent="Divider"]
+modulate = Color(0.217469, 0.214331, 0.222412, 1)
+position = Vector2(578, 280)
+scale = Vector2(10.494, 50)
+texture = SubResource("CanvasTexture_fyfrb")
+
+[node name="Line5" type="Sprite2D" parent="Divider"]
+modulate = Color(0.217469, 0.214331, 0.222412, 1)
+position = Vector2(578, 350)
+scale = Vector2(10.494, 50)
+texture = SubResource("CanvasTexture_fyfrb")
+
+[node name="Line6" type="Sprite2D" parent="Divider"]
+modulate = Color(0.217469, 0.214331, 0.222412, 1)
+position = Vector2(578, 420)
+scale = Vector2(10.494, 50)
+texture = SubResource("CanvasTexture_fyfrb")
+
+[node name="Line7" type="Sprite2D" parent="Divider"]
+modulate = Color(0.217469, 0.214331, 0.222412, 1)
+position = Vector2(578, 490)
+scale = Vector2(10.494, 50)
+texture = SubResource("CanvasTexture_fyfrb")
+
+[node name="Line8" type="Sprite2D" parent="Divider"]
+modulate = Color(0.217469, 0.214331, 0.222412, 1)
+position = Vector2(578, 560)
+scale = Vector2(10.494, 50)
+texture = SubResource("CanvasTexture_fyfrb")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="LeftScoreLabel" type="Label" parent="UI"]
+offset_left = 6.0
+offset_top = 42.0
+offset_right = 46.0
+offset_bottom = 65.0
+text = "000"
+label_settings = ExtResource("5_um0n5")
+
+[node name="RightScoreLabel" type="Label" parent="UI"]
+offset_left = 1049.0
+offset_top = 42.0
+offset_right = 1139.0
+offset_bottom = 121.0
+text = "000"
+label_settings = ExtResource("5_um0n5")
 
 [connection signal="body_entered" from="OverAreaL" to="." method="_on_over_area_l_body_entered"]
 [connection signal="body_entered" from="OverAreaR" to="." method="_on_over_area_r_body_entered"]

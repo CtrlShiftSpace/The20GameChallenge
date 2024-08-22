@@ -1,18 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://daah0rv83jxcn"]
 
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_jo11b"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_r0vfl"]
+[ext_resource type="Texture2D" uid="uid://brovxfv0ftu1w" path="res://assets/images/ball.png" id="2_dl2h6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_67khi"]
+radius = 12.0
 
 [node name="Ball" type="CharacterBody2D"]
 script = ExtResource("1_jo11b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.246446, 0.159529, 0.130038, 1)
-scale = Vector2(19.92, 20.36)
-texture = SubResource("CanvasTexture_r0vfl")
+scale = Vector2(1, 1.022)
+texture = ExtResource("2_dl2h6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_67khi")
