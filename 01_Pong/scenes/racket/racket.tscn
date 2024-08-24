@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://drsdx3i2hy8ij"]
+[gd_scene load_steps=5 format=3 uid="uid://drsdx3i2hy8ij"]
 
 [ext_resource type="Script" path="res://scripts/racket.gd" id="1_727wq"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_26dyw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fo6uw"]
-size = Vector2(34.5, 132.55)
+size = Vector2(34.5, 134)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyvjm"]
+size = Vector2(34.5, 4)
 
 [node name="Racket" type="CharacterBody2D" groups=["racket"]]
 script = ExtResource("1_727wq")
@@ -17,5 +20,23 @@ scale = Vector2(34.5, 134.06)
 texture = SubResource("CanvasTexture_26dyw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(16.75, 65.725)
+position = Vector2(16.75, 65)
 shape = SubResource("RectangleShape2D_fo6uw")
+
+[node name="TopArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopArea"]
+position = Vector2(16.75, -4)
+shape = SubResource("RectangleShape2D_fyvjm")
+
+[node name="BottomArea" type="Area2D" parent="."]
+position = Vector2(0, 138)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomArea"]
+position = Vector2(16.75, -4)
+shape = SubResource("RectangleShape2D_fyvjm")
+
+[connection signal="body_entered" from="TopArea" to="." method="_on_top_area_body_entered"]
+[connection signal="body_exited" from="TopArea" to="." method="_on_top_area_body_exited"]
+[connection signal="body_entered" from="BottomArea" to="." method="_on_bottom_area_body_entered"]
+[connection signal="body_exited" from="BottomArea" to="." method="_on_bottom_area_body_exited"]

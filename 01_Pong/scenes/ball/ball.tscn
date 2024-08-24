@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_67khi"]
 radius = 12.0
 
-[node name="Ball" type="CharacterBody2D"]
+[node name="Ball" type="CharacterBody2D" groups=["ball"]]
 script = ExtResource("1_jo11b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -16,3 +16,8 @@ texture = ExtResource("2_dl2h6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_67khi")
+
+[node name="RacketBorderTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="RacketBorderTimer" to="." method="_on_racket_border_timer_timeout"]

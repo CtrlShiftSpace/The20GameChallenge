@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://hk7v1xc68kru"]
+[gd_scene load_steps=9 format=3 uid="uid://hk7v1xc68kru"]
 
 [ext_resource type="PackedScene" uid="uid://fsttqtyniqq2" path="res://scenes/wall/wall.tscn" id="1_rsnxu"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_shg82"]
@@ -12,9 +12,6 @@
 size = Vector2(96.5, 662)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_fyfrb"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4j7y0"]
-size = Vector2(650, 658)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_shg82")
@@ -45,13 +42,14 @@ player_no = 2
 position = Vector2(1109, 250)
 
 [node name="OverAreaL" type="Area2D" parent="."]
+position = Vector2(-16, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OverAreaL"]
 position = Vector2(-51, 315)
 shape = SubResource("RectangleShape2D_2kyx8")
 
 [node name="OverAreaR" type="Area2D" parent="."]
-position = Vector2(1262, 2)
+position = Vector2(1278, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OverAreaR"]
 position = Vector2(-55, 324)
@@ -126,20 +124,5 @@ offset_bottom = 121.0
 text = "000"
 label_settings = ExtResource("5_um0n5")
 
-[node name="ScoreAreaL" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreAreaL"]
-position = Vector2(252, 319)
-shape = SubResource("RectangleShape2D_4j7y0")
-
-[node name="ScoreAreaR" type="Area2D" parent="."]
-position = Vector2(652, -1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreAreaR"]
-position = Vector2(252, 319)
-shape = SubResource("RectangleShape2D_4j7y0")
-
 [connection signal="body_entered" from="OverAreaL" to="." method="_on_over_area_l_body_entered"]
 [connection signal="body_entered" from="OverAreaR" to="." method="_on_over_area_r_body_entered"]
-[connection signal="body_entered" from="ScoreAreaL" to="." method="_on_score_area_l_body_entered"]
-[connection signal="body_entered" from="ScoreAreaR" to="." method="_on_score_area_r_body_entered"]
