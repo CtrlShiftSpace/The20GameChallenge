@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
 var _speed: float = 200.0
+var _is_racket_touch: = false 
+
+signal on_first_racket_touch()
 
 func _ready():
 	randomize()
@@ -15,3 +18,6 @@ func _physics_process(delta):
 	if collision_object:
 		# 當有碰撞到物件時，依照碰撞物體的法線，計算反彈的向量
 		velocity = velocity.bounce(collision_object.get_normal())
+		if _is_racket_touch == false and collision_object.get_collider().is_in_group("racket"):
+			_is_racket_touch = true
+			on_first_racket_touch.emit()
