@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuvt1qj7ygymq"]
+
+[ext_resource type="PackedScene" uid="uid://daah0rv83jxcn" path="res://scenes/ball/ball.tscn" id="1_7dmlj"]
+[ext_resource type="Script" path="res://scripts/test_case.gd" id="1_yi320"]
+[ext_resource type="PackedScene" uid="uid://drsdx3i2hy8ij" path="res://scenes/racket/racket.tscn" id="2_5bpv1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44gcw"]
+size = Vector2(847, 82.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hlk8"]
+size = Vector2(90, 456)
+
+[node name="TestCase" type="Node2D"]
+script = ExtResource("1_yi320")
+
+[node name="Ball" parent="." instance=ExtResource("1_7dmlj")]
+
+[node name="Racket" parent="." instance=ExtResource("2_5bpv1")]
+position = Vector2(120, 98)
+
+[node name="ResetArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ResetArea"]
+position = Vector2(88, -126)
+shape = SubResource("RectangleShape2D_44gcw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ResetArea"]
+position = Vector2(112, 423)
+shape = SubResource("RectangleShape2D_44gcw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ResetArea"]
+position = Vector2(422, 148)
+shape = SubResource("RectangleShape2D_0hlk8")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ResetArea"]
+position = Vector2(-225, 144)
+shape = SubResource("RectangleShape2D_0hlk8")
+
+[connection signal="body_entered" from="ResetArea" to="." method="_on_reset_area_body_entered"]

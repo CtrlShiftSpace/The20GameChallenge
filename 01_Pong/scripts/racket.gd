@@ -1,17 +1,18 @@
-extends CharacterBody2D
+extends StaticBody2D
 
 # 第幾位玩家
 @export var player_no: int = 1
 
 @onready var collision_shape_2d = $CollisionShape2D
 
-var _velocity: Vector2 = Vector2(0, 50)
-var _speed: float = 10.0
+var _dist: float = 200.0
 var _up_action: String
 var _down_action: String
 var _is_action_exist: bool = false
 var _width: float
 var _height: float
+var _move_top_limit: float = 100.0
+var _move_bottom_limit: float = 555.0
 
 func _ready():
 	_up_action = "player%d_up" % [player_no]
@@ -23,15 +24,21 @@ func _ready():
 	_width = size[0]
 	_height = size[1]
 
-func _physics_process(delta):
-	velocity = Vector2.ZERO
+func _process(delta):
 	if not _is_action_exist:
 		return
 	var way = 1
 	# 向上移動
 	if Input.is_action_pressed(_up_action):
-		velocity += _velocity * _speed * delta * -1
+		var movement = _dist * delta * -1
+		if position.y + movement < _move_top_limit:
+			position.y = _move_top_limit
+		else:
+			position.y += movement
 	# 向下移動
 	if Input.is_action_pressed(_down_action):
-		velocity += _velocity * _speed * delta
-	move_and_collide(velocity)
+		var movement = _dist * delta
+		if position.y + movement > _move_bottom_limit:
+			position.y = _move_bottom_limit
+		else:
+			position.y += movement

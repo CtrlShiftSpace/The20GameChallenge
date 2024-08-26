@@ -9,11 +9,9 @@ bounce = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctgr5"]
 size = Vector2(1161, 30)
 
-[node name="Wall" type="RigidBody2D"]
+[node name="Wall" type="StaticBody2D"]
 modulate = Color(0.212305, 0.212305, 0.212305, 1)
 physics_material_override = SubResource("PhysicsMaterial_8axu1")
-gravity_scale = 0.0
-freeze = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.568627, 0.988235, 0.329412, 1)

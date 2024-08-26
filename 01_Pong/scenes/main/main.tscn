@@ -35,11 +35,11 @@ z_index = 1
 position = Vector2(579, 328)
 
 [node name="RacketL" parent="." instance=ExtResource("3_yhj53")]
-position = Vector2(8, 250)
+position = Vector2(39, 342)
 player_no = 2
 
 [node name="RacketR" parent="." instance=ExtResource("3_yhj53")]
-position = Vector2(1109, 250)
+position = Vector2(1112, 347)
 
 [node name="OverAreaL" type="Area2D" parent="."]
 position = Vector2(-16, 0)
