@@ -1,21 +1,17 @@
 extends CharacterBody2D
 
-# 接觸到檔板上下區塊時，觸發短暫timer
-@onready var racket_border_timer = $RacketBorderTimer
 @onready var collision_shape_2d = $CollisionShape2D
+@onready var start_timer = $StartTimer
 
 # 移動方向
 var _direction: Vector2 = Vector2.ZERO
-var _speed: float = 400.0
-var _racket_border_duration: float = 0.5
+var _speed: float = 500.0
 # 在接觸到racket時，是否要做處理
 var _is_action_on_racket: bool = true
 
 func _ready():
 	randomize()
-	_direction = Vector2(randf(), randf()).normalized()
-	
-	racket_border_timer.wait_time = _racket_border_duration
+	reset()
 				
 func _physics_process(delta):
 	# move_and_collide 依據傳入向量移動，當碰撞到物體時會回傳碰撞到的物件
@@ -52,6 +48,10 @@ func _physics_process(delta):
 			# 當有碰撞到物件時，依照碰撞物體的法線，計算反彈的向量
 			_direction = _direction.bounce(collision_object.get_normal())
 
-func _on_racket_border_timer_timeout():
-	# 當時間到時，將接觸到racket改回需要處理狀態
-	_is_action_on_racket = true
+func reset():
+	_direction = Vector2.ZERO
+	position = Vector2(579, 342)
+	start_timer.start()
+
+func _on_start_timer_timeout():
+	_direction = Vector2(randf(), randf()).normalized()

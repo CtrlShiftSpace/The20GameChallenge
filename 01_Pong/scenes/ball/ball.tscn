@@ -17,7 +17,7 @@ texture = ExtResource("2_dl2h6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_67khi")
 
-[node name="RacketBorderTimer" type="Timer" parent="."]
+[node name="StartTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="timeout" from="RacketBorderTimer" to="." method="_on_racket_border_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

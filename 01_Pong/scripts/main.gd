@@ -33,9 +33,11 @@ func _on_over_area_l_body_entered(body):
 		_is_touch_left = true
 		_right_score += 1
 		update_ui_score()
+		ball.reset()
 
 func _on_over_area_r_body_entered(body):
 	if body.is_in_group("Ball"):
 		_is_touch_right = true
 		_left_score += 1
 		update_ui_score()
+		ball.reset()
