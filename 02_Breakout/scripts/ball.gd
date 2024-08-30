@@ -18,3 +18,5 @@ func _physics_process(delta):
 		if collider.is_in_group("paddle_group"):
 			# 增加速度
 			_speed += 20
+		if collider.is_in_group("brick_group"):
+			collider.queue_free()

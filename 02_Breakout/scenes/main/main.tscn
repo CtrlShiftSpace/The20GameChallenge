@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2upj28cvv3rt"]
+[gd_scene load_steps=12 format=3 uid="uid://c2upj28cvv3rt"]
 
 [ext_resource type="Script" path="res://scripts/paddle.gd" id="1_23fhm"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_mnrjk"]
 [ext_resource type="Texture2D" uid="uid://cfb3vnjgagc4e" path="res://assets/images/breakout_pieces.png" id="1_x1333"]
 [ext_resource type="Script" path="res://scripts/ball.gd" id="3_h1npo"]
 [ext_resource type="Texture2D" uid="uid://6p07e7m61ik7" path="res://assets/images/ball.png" id="3_nvro0"]
+[ext_resource type="PackedScene" uid="uid://dkd1ofb7rcnp" path="res://scenes/brick/brick.tscn" id="5_rc3j6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ky5n"]
 size = Vector2(40, 608)
@@ -23,6 +25,8 @@ height = 96.0
 radius = 12.0416
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_mnrjk")
+brick_scene = ExtResource("5_rc3j6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1152.0
@@ -100,7 +104,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3aufr")
 
 [node name="Ball" type="CharacterBody2D" parent="."]
-position = Vector2(562, 379)
+position = Vector2(506, 510)
 script = ExtResource("3_h1npo")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
