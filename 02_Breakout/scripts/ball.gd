@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal on_brick_destroy
+
 # 移動方向
 var _direction: Vector2 = Vector2.ZERO
 # 移動速度
@@ -14,9 +16,9 @@ func _physics_process(delta):
 	if coll_object:
 		_direction = _direction.bounce(coll_object.get_normal())
 		var collider = coll_object.get_collider()
-		# 撞到擋板
-		if collider.is_in_group("paddle_group"):
-			# 增加速度
-			_speed += 20
+		# 碰到磚塊
 		if collider.is_in_group("brick_group"):
+			_speed += 20
 			collider.queue_free()
+			on_brick_destroy.emit()
+	
