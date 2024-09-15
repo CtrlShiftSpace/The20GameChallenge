@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c2upj28cvv3rt"]
+[gd_scene load_steps=15 format=3 uid="uid://c2upj28cvv3rt"]
 
 [ext_resource type="Script" path="res://scripts/paddle.gd" id="1_23fhm"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_mnrjk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/ball.gd" id="3_h1npo"]
 [ext_resource type="Texture2D" uid="uid://6p07e7m61ik7" path="res://assets/images/ball.png" id="3_nvro0"]
 [ext_resource type="PackedScene" uid="uid://dkd1ofb7rcnp" path="res://scenes/brick/brick.tscn" id="5_rc3j6"]
+[ext_resource type="LabelSettings" uid="uid://qe6xeh1fkce2" path="res://assets/tres/NotoS_60_white.tres" id="7_tascb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ky5n"]
 size = Vector2(40, 608)
@@ -26,6 +27,9 @@ radius = 12.0416
 
 [sub_resource type="LabelSettings" id="LabelSettings_q3m2d"]
 font_size = 50
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0nw5"]
+size = Vector2(1322, 90.5)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_mnrjk")
@@ -106,7 +110,7 @@ texture = SubResource("AtlasTexture_7vpuv")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3aufr")
 
-[node name="Ball" type="CharacterBody2D" parent="."]
+[node name="Ball" type="CharacterBody2D" parent="." groups=["ball_group"]]
 position = Vector2(506, 510)
 script = ExtResource("3_h1npo")
 
@@ -135,3 +139,50 @@ offset_bottom = 69.0
 grow_horizontal = 0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_q3m2d")
+
+[node name="HBCount" type="HBoxContainer" parent="Hud"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MCCount" type="MarginContainer" parent="Hud/HBCount"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="ReadyLabel" type="Label" parent="Hud/HBCount/MCCount"]
+layout_mode = 2
+text = "3"
+label_settings = ExtResource("7_tascb")
+
+[node name="MCReminder" type="MarginContainer" parent="Hud"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -44.0
+offset_right = 120.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="Hud/MCReminder"]
+visible = false
+layout_mode = 2
+text = "遊戲結束"
+label_settings = ExtResource("7_tascb")
+
+[node name="DiedArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DiedArea"]
+position = Vector2(582, 722.75)
+shape = SubResource("RectangleShape2D_a0nw5")
+
+[node name="ReadyTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="DiedArea" to="." method="_on_died_area_body_entered"]
+[connection signal="timeout" from="ReadyTimer" to="." method="_on_ready_timer_timeout"]

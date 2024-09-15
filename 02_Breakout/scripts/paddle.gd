@@ -1,18 +1,22 @@
 extends StaticBody2D
 
+@onready var sprite_2d = $Sprite2D
+
 var _move_distance: float = 400.0
 var _min_x: float = 40.0
 var _max_x: float = 1112.0
 var _width: float = 0.0
-@onready var sprite_2d = $Sprite2D
-
+# 是否可以透過輸入移動
+var _is_input_move: bool = true
 
 func _ready():
 	# 檔板寬度
 	_width = sprite_2d.get_rect().size[0]
-	print(_width)
 
 func _process(delta):
+	if not _is_input_move:
+		return
+		
 	var is_move = false
 	# 向左移動
 	if Input.is_action_pressed("ui_left"):
